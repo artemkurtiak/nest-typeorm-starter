@@ -15,12 +15,12 @@ import { globalDashesRegex } from '@shared/common/constants';
 
 export class DatabaseRepository<T extends object> {
   private readonly repository: Repository<T>;
-  private readonly singlarTableName: string;
+  private readonly singularTableName: string;
   private readonly pluralTableName: string;
 
   constructor(repository: Repository<T>) {
     this.repository = repository;
-    this.singlarTableName = pluralize
+    this.singularTableName = pluralize
       .singular(repository.metadata.tableName)
       .replace(globalDashesRegex, ' ');
     this.pluralTableName = pluralize
@@ -36,7 +36,7 @@ export class DatabaseRepository<T extends object> {
     const document = await this.findOne(options);
 
     if (!document) {
-      throw new NotFoundException(`${capitalizeText(this.singlarTableName)} not found`);
+      throw new NotFoundException(`${capitalizeText(this.singularTableName)} not found`);
     }
 
     return document;
@@ -75,7 +75,7 @@ export class DatabaseRepository<T extends object> {
 
     if (document) {
       throw new NotFoundException(
-        `${capitalizeText(this.singlarTableName)} with provided params already exists`,
+        `${capitalizeText(this.singularTableName)} with provided params already exists`,
       );
     }
   }
