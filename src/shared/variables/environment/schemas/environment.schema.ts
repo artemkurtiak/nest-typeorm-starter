@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const EnvironmentSchema = z
   .object(
     {
-      NODE_ENV: z.enum(['PROD', 'DEV']),
+      NODE_ENV: z.enum(['PROD', 'DEV', 'TYPEORM']),
       PORT: z.coerce.number().positive(),
       API_PREFIX: z.string().startsWith('/'),
       ALLOWED_ORIGINS: z.string(),
