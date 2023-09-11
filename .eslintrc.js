@@ -21,11 +21,4 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': [2],
     '@typescript-eslint/no-explicit-any': 'off',
   },
-  settings: {
-    'import/resolver': {
-      node: {
-        paths: ['src'],
-      },
-    },
-  },
 };

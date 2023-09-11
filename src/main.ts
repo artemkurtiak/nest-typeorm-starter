@@ -1,13 +1,10 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestApplication, NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
 import cookieParser from 'cookie-parser';
 
-import { Environment } from '@shared/variables/environment';
-
 import { RootModule } from './root.module';
-
+import { Environment } from '@shared/variables/environment';
 import { ResponseInterceptor } from '@shared/common/interceptors/response.interceptor';
 
 (async () => {

@@ -1,11 +1,9 @@
 import { Inject, OnApplicationBootstrap } from '@nestjs/common';
-
 import { DataSource } from 'typeorm';
 
 import { databaseTables } from '../constants';
-
 import { DatabaseRepository } from '../repositories/database.repository';
-import { DatabaseRepositories } from '../types';
+import type { DatabaseRepositories } from '../types';
 
 export class DatabaseService implements OnApplicationBootstrap {
   @Inject(DataSource)

@@ -1,7 +1,4 @@
 import { NotFoundException } from '@nestjs/common';
-
-import { capitalizeText } from '@shared/common/helpers';
-import pluralize from 'pluralize';
 import {
   DeepPartial,
   FindManyOptions,
@@ -9,8 +6,10 @@ import {
   FindOptionsWhere,
   Repository,
 } from 'typeorm';
-import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
+import pluralize from 'pluralize';
+import type { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
+import { capitalizeText } from '@shared/common/helpers';
 import { globalDashesRegex } from '@shared/common/constants';
 
 export class DatabaseRepository<T extends object> {

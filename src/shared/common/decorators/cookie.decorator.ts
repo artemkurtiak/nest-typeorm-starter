@@ -1,6 +1,6 @@
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
 
-import { AuthenticationCookiesType } from '../types';
+import type { AuthenticationCookiesType } from '../types';
 
 export const Cookie = createParamDecorator(
   (field: keyof AuthenticationCookiesType, context: ExecutionContext) => {

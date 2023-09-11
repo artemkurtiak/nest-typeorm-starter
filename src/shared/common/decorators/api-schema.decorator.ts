@@ -1,4 +1,4 @@
-import { ApiSchemaDecorator } from '../types';
+import type { ApiSchemaDecorator } from '../types';
 
 export const ApiSchema: ApiSchemaDecorator = ({ name }) => {
   return (constructor) => {
