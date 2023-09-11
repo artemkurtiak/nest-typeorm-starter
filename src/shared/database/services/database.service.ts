@@ -1,4 +1,4 @@
-import { InjectDataSource } from '@nestjs/typeorm';
+import { Inject, OnApplicationBootstrap } from '@nestjs/common';
 
 import { DataSource } from 'typeorm';
 
@@ -7,20 +7,24 @@ import { databaseTables } from '../constants';
 import { DatabaseRepository } from '../repositories/database.repository';
 import { DatabaseRepositories } from '../types';
 
-export class DatabaseService {
-  protected database: DatabaseRepositories;
+export class DatabaseService implements OnApplicationBootstrap {
+  @Inject(DataSource)
+  dataSource: DataSource;
+  protected db: DatabaseRepositories;
 
-  constructor(@InjectDataSource() dataSource: DataSource) {
-    const database = Object.entries(databaseTables).reduce((acc, [key, name]) => {
-      const entityMetadata = dataSource.entityMetadatas.find((item) => item.tableName === name);
+  onApplicationBootstrap() {
+    const db = Object.entries(databaseTables).reduce((acc, [key, name]) => {
+      const entityMetadata = this.dataSource.entityMetadatas.find(
+        (item) => item.tableName === name,
+      );
 
       if (entityMetadata) {
-        acc[key] = new DatabaseRepository(dataSource.getRepository(entityMetadata.name));
+        acc[key] = new DatabaseRepository(this.dataSource.getRepository(entityMetadata.name));
       }
 
       return acc;
     }, {} as DatabaseRepositories);
 
-    this.database = database;
+    this.db = db;
   }
 }

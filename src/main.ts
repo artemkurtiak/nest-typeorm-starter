@@ -14,6 +14,7 @@ import { ResponseInterceptor } from '@shared/common/interceptors/response.interc
   const app = await NestFactory.create(RootModule);
   const swagger = new DocumentBuilder().setTitle('Nest Typeorm starter').setVersion('1.0').build();
 
+  app.enableShutdownHooks();
   app.use(cookieParser());
   app.setGlobalPrefix(Environment.API_PREFIX);
   app.enableCors({
