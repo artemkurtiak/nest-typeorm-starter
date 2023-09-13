@@ -17,10 +17,10 @@
     "lint": "eslint \"src/**/*.ts\" --fix",
     "typeorm": "NODE_ENV=TYPEORM ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "datasource": "yarn typeorm -d ./src/shared/database/dataSource.ts",
-    "migration:generate": "yarn typeorm:datasource migration:generate",
+    "migration:generate": "yarn datasource migration:generate",
     "migration:create": "yarn typeorm migration:create",
-    "migration:run": "yarn typeorm:datasource migration:run",
-    "migration:revert": "yarn typeorm:datasource migration:revert"
+    "migration:run": "yarn datasource migration:run",
+    "migration:revert": "yarn datasource migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^10.2.5",
